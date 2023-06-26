@@ -71,7 +71,7 @@ buttonAdd.addEventListener('click', function () {
     if (arrayOfNums.length > 0) {
         calculate()
         operand = '+'
-        preview.textContent = `${operand}`
+        showPreview()
     }
     else {
         operand = '+';
@@ -82,7 +82,7 @@ buttonMinus.addEventListener('click', function () {
     if (arrayOfNums.length > 0) {
         calculate()
         operand = '-'
-        preview.textContent = `${operand}`
+        showPreview();
     }
     else {
         operand = '-';
@@ -93,7 +93,7 @@ buttonMultiply.addEventListener('click', function () {
     if (arrayOfNums.length > 0) {
         calculate()
         operand = '*'
-        preview.textContent = `${operand}`
+        showPreview();
     }
     else {
         operand = '*';
@@ -104,13 +104,19 @@ buttonDivide.addEventListener('click', function () {
     if (arrayOfNums.length > 0) {
         calculate()
         operand = '/'
-        preview.textContent = `${operand}`
+        showPreview()
     }
     else {
         operand = '/';
         testAndPush()
     }
 })
+
+function showPreview() {
+    preview.textContent = `${arrayOfNums[0]} ${operand}`
+    resultDisplay.textContent = '';
+}
+
 function testAndPush() {
     test = isNaN(parseInt(display.textContent))
     if (test == false) {
