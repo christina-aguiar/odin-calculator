@@ -5,6 +5,7 @@ const numericalButtons = document.querySelectorAll('.numerical');
 const operatorButtons = document.querySelectorAll('.operator');
 const buttonEqual = document.querySelector('.equal');
 const buttonClear = document.querySelector('.clear');
+const decimal = document.querySelector('.decimal');
 
 const arrayOfNums = [];
 let operand = '';
@@ -17,6 +18,11 @@ numericalButtons.forEach(Element => Element.addEventListener('click', function (
     updateDisplay(this.textContent)
 }));
 
+decimal.addEventListener('click', function() {
+    updateDisplay(this.textContent);
+    decimal.classList.add('decimalPressed')
+});
+
 operatorButtons.forEach(Element => Element.addEventListener('click', function () {
     if (arrayOfNums.length > 0) {
         calculate()
@@ -28,6 +34,7 @@ operatorButtons.forEach(Element => Element.addEventListener('click', function ()
         operand = Element.textContent;
         testAndPush();
     }
+    Element.classList.add('operatorPressed')
 }
 ));
 
@@ -48,34 +55,44 @@ function updateDisplay(a) {
     if (resultDisplay !== '' && operand !== '') {
         preview.textContent = `${arrayOfNums[0]} ${operand}`
     }
+    if (display.textContent == 0) {
+        display.textContent = ''
+    }
     resultDisplay.textContent = ''
-    display.textContent = parseInt(display.textContent.concat(a).substring(0, 10))
+    display.textContent = display.textContent.concat(a).substring(0, 10)
 };
 
 function testAndPush() {
-    booleanTest = isNaN(parseInt(display.textContent))
+    booleanTest = isNaN(parseFloat(display.textContent))
     if (booleanTest == false) {
-        arrayOfNums.push(parseInt(display.textContent))
+        arrayOfNums.push(parseFloat(display.textContent))
         display.textContent = '0';
         preview.textContent = `${arrayOfNums[0]} ${operand}`
     }
+    decimal.classList.remove('decimalPressed')
+    operatorButtons.forEach(Element => {
+        Element.classList.remove('operatorPressed')
+    })
 }
 
 function calculate() {
-    booleanTest = isNaN(parseInt(display.textContent))
+    booleanTest = isNaN(parseFloat(display.textContent))
     if (booleanTest == false) {
-        arrayOfNums.push(parseInt(display.textContent))
+        arrayOfNums.push(parseFloat(display.textContent))
     }
 
     if (arrayOfNums.length > 0) {
         if (operand == '+') {
-            sum = arrayOfNums.reduce((a, b) => a + b, 0)
+            sum = arrayOfNums.reduce((a, b) => a + b, 0);
+            sum = Math.floor(sum * 1000) / 1000
         }
         else if (operand == '-') {
             sum = arrayOfNums.reduce((a, b) => a - b)
+            sum = Math.floor(sum * 1000) / 1000
         }
         else if (operand == '*') {
             sum = arrayOfNums.reduce((a, b) => a * b)
+            sum = Math.floor(sum * 1000) / 1000
         }
         else if (operand == '/') {
             if (arrayOfNums[1] == 0) {
@@ -85,6 +102,7 @@ function calculate() {
             }
             else {
                 sum = arrayOfNums.reduce((a, b) => a / b)
+                sum = Math.floor(sum * 1000) / 1000
             }
         }
         arraySize = arrayOfNums.length
@@ -93,8 +111,12 @@ function calculate() {
         }
         arrayOfNums.push(sum);
         display.textContent = ''
-        resultDisplay.textContent = parseInt(sum * 100) / 100;
+        resultDisplay.textContent = sum;
         preview.textContent = ''
+        decimal.classList.remove('decimalPressed')
+        operatorButtons.forEach(Element => {
+            Element.classList.remove('operatorPressed')
+        })
         operand = ''
     }
 }
@@ -104,6 +126,10 @@ function reset() {
     for (i = 0; i < arraySize; i++) {
         arrayOfNums.pop()
     }
+    decimal.classList.remove('decimalPressed')
+    operatorButtons.forEach(Element => {
+        Element.classList.remove('operatorPressed')
+    })
     operand = '';
     sum = 0;
     display.textContent = '0';
@@ -115,6 +141,10 @@ function reset() {
 document.addEventListener("keydown", e => {
     if (e.key >= 0 && e.key < 10) {
         updateDisplay(e.key)
+    }
+    if (e.key == '.') {
+        updateDisplay(e.key);
+        decimal.classList.add('decimalPressed')
     }
     if (e.key == '+' || e.key == '-' || e.key == '/' || e.key == '*') {
         if (arrayOfNums.length > 0) {
@@ -133,5 +163,4 @@ document.addEventListener("keydown", e => {
             calculate()
         }
     }
-    console.log(e)
 });
