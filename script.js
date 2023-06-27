@@ -12,6 +12,7 @@ let operand = '';
 let sum;
 let arraySize;
 let booleanTest;
+let decimalPressed = 'no';
 display.textContent = 0;
 
 numericalButtons.forEach(Element => Element.addEventListener('click', function () {
@@ -20,7 +21,8 @@ numericalButtons.forEach(Element => Element.addEventListener('click', function (
 
 decimal.addEventListener('click', function() {
     updateDisplay(this.textContent);
-    decimal.classList.add('decimalPressed')
+    decimal.classList.add('decimalPressed');
+    decimalPressed = 'yes';
 });
 
 operatorButtons.forEach(Element => Element.addEventListener('click', function () {
@@ -70,6 +72,7 @@ function testAndPush() {
         preview.textContent = `${arrayOfNums[0]} ${operand}`
     }
     decimal.classList.remove('decimalPressed')
+    decimalPressed = 'no'
     operatorButtons.forEach(Element => {
         Element.classList.remove('operatorPressed')
     })
@@ -113,6 +116,7 @@ function calculate() {
         resultDisplay.textContent = sum;
         preview.textContent = ''
         decimal.classList.remove('decimalPressed')
+        decimalPressed = 'no';
         operatorButtons.forEach(Element => {
             Element.classList.remove('operatorPressed')
         })
@@ -126,6 +130,7 @@ function reset() {
         arrayOfNums.pop()
     }
     decimal.classList.remove('decimalPressed')
+    decimalPressed = 'no';
     operatorButtons.forEach(Element => {
         Element.classList.remove('operatorPressed')
     })
@@ -142,8 +147,14 @@ document.addEventListener("keydown", e => {
         updateDisplay(e.key)
     }
     if (e.key == '.') {
-        updateDisplay(e.key);
-        decimal.classList.add('decimalPressed')
+        if (decimalPressed == 'no') {
+            updateDisplay(e.key);
+            decimal.classList.add('decimalPressed');
+            decimalPressed = 'yes';
+        }
+        if (decimalPressed == 'yes') {
+            return;
+        }
     }
     if (e.key == '+' || e.key == '-' || e.key == '/' || e.key == '*') {
         if (arrayOfNums.length > 0) {
