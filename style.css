@@ -84,5 +84,7 @@ body {
 
 .footer {
 align-self: start;
+bottom: 5px;
+position:fixed;
 font-weight: 500;
 }
