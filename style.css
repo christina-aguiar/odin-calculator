@@ -31,13 +31,13 @@ body {
     height: 70px;
     border: 2px solid;
     width: 400px;
-    background-color: rgb(188, 147, 208);
 }
 
 .display-container > * {
     padding: 10px;
     height: 50px;
     color: rgb(81, 48, 84);
+    background-color: rgb(186, 127, 215);
 }
 
 .preview {
@@ -73,13 +73,26 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(154, 115, 173);
+    background-color: rgb(146, 90, 174);
     user-select: none;
     color: rgb(58, 35, 60);
 }
 
+.equal {
+    flex: 1 1 59%;
+}
+
+.decimalPressed {
+    pointer-events: none ;
+    background-color: rgb(218, 145, 225);
+}
+
+.operatorPressed {
+    background-color: rgb(218, 145, 225);
+}
+
 .buttons-container>*:hover {
-    background-color: rgb(199, 160, 217);
+    background-color: rgb(218, 145, 225);
 }
 
 .footer {
