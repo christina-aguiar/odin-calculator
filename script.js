@@ -111,3 +111,27 @@ function reset() {
     preview.textContent = ''
 }
 
+//Add keyboard support
+document.addEventListener("keydown", e => {
+    if (e.key >= 0 && e.key < 10) {
+        updateDisplay(e.key)
+    }
+    if (e.key == '+' || e.key == '-' || e.key == '/' || e.key == '*') {
+        if (arrayOfNums.length > 0) {
+            calculate()
+            operand = e.key;
+            preview.textContent = `${arrayOfNums[0]} ${operand}`
+            resultDisplay.textContent = '';
+        }
+        else {
+            operand = e.key;
+            testAndPush();   
+            }
+    }
+    if (e.key == '=' || e.key == 'Enter') {
+        if (arrayOfNums.length > 0) {
+            calculate()
+        }
+    }
+    console.log(e)
+});
