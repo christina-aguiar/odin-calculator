@@ -80,7 +80,6 @@ function calculate() {
     if (booleanTest == false) {
         arrayOfNums.push(parseFloat(display.textContent))
     }
-
     if (arrayOfNums.length > 0) {
         if (operand == '+') {
             sum = arrayOfNums.reduce((a, b) => a + b, 0);
@@ -157,6 +156,18 @@ document.addEventListener("keydown", e => {
             operand = e.key;
             testAndPush();   
             }
+        if (operand == '+') {
+            operatorButtons[0].classList.add('operatorPressed')
+        }
+        else if (operand == '-') {
+            operatorButtons[1].classList.add('operatorPressed')
+        }
+        else if (operand == '/') {
+            operatorButtons[2].classList.add('operatorPressed')
+        }
+        else if (operand == '*') {
+            operatorButtons[3].classList.add('operatorPressed')
+        }
     }
     if (e.key == '=' || e.key == 'Enter') {
         if (arrayOfNums.length > 0) {
