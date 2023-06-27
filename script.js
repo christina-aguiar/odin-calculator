@@ -49,7 +49,7 @@ function updateDisplay(a) {
         preview.textContent = `${arrayOfNums[0]} ${operand}`
     }
     resultDisplay.textContent = ''
-    display.textContent = parseInt(display.textContent.concat(a))
+    display.textContent = parseInt(display.textContent.concat(a).substring(0, 10))
 };
 
 function testAndPush() {
