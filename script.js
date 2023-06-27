@@ -13,7 +13,7 @@ let sum;
 let arraySize;
 let booleanTest;
 let decimalPressed = 'no';
-display.textContent = 0;
+display.textContent = '';
 
 numericalButtons.forEach(Element => Element.addEventListener('click', function () {
     updateDisplay(this.textContent)
@@ -57,9 +57,6 @@ function updateDisplay(a) {
     if (resultDisplay !== '' && operand !== '') {
         preview.textContent = `${arrayOfNums[0]} ${operand}`
     }
-    if (display.textContent == 0) {
-        display.textContent = ''
-    }
     resultDisplay.textContent = ''
     display.textContent = display.textContent.concat(a).substring(0, 10)
 };
@@ -68,7 +65,7 @@ function testAndPush() {
     booleanTest = isNaN(parseFloat(display.textContent))
     if (booleanTest == false) {
         arrayOfNums.push(parseFloat(display.textContent))
-        display.textContent = '0';
+        display.textContent = '';
         preview.textContent = `${arrayOfNums[0]} ${operand}`
     }
     decimal.classList.remove('decimalPressed')
@@ -136,7 +133,7 @@ function reset() {
     })
     operand = '';
     sum = 0;
-    display.textContent = '0';
+    display.textContent = '';
     resultDisplay.textContent = ''
     preview.textContent = ''
 }
