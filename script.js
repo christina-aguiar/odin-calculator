@@ -182,4 +182,7 @@ document.addEventListener("keydown", e => {
             calculate()
         }
     }
+    if (e.key == 'Escape') {
+        reset()
+    }
 });
