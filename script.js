@@ -91,15 +91,15 @@ function calculate() {
     if (arrayOfNums.length > 0) {
         if (operand == '+') {
             sum = arrayOfNums.reduce((a, b) => a + b, 0);
-            sum = Math.floor(sum * 1000) / 1000
+            sum = Math.round(sum * 10000) / 10000
         }
         else if (operand == '-') {
             sum = arrayOfNums.reduce((a, b) => a - b)
-            sum = Math.floor(sum * 1000) / 1000
+            sum = Math.round(sum * 10000) / 10000
         }
         else if (operand == '*') {
             sum = arrayOfNums.reduce((a, b) => a * b)
-            sum = Math.floor(sum * 1000) / 1000
+            sum = Math.round(sum * 10000) / 10000
         }
         else if (operand == '/') {
             if (arrayOfNums[1] == 0) {
@@ -109,7 +109,7 @@ function calculate() {
             }
             else {
                 sum = arrayOfNums.reduce((a, b) => a / b)
-                sum = Math.floor(sum * 1000) / 1000
+                sum = Math.round(sum * 10000) / 10000
             }
         }
         arraySize = arrayOfNums.length
