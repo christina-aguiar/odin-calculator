@@ -4,7 +4,8 @@ const resultDisplay = document.querySelector('.resultDisplay');
 const numericalButtons = document.querySelectorAll('.numerical');
 const operatorButtons = document.querySelectorAll('.operator');
 const buttonEqual = document.querySelector('.equal');
-const buttonClear = document.querySelector('.clear');
+const buttonAllClear = document.querySelector('.clear');
+const buttonClear = document.querySelector('.backspace');
 const decimal = document.querySelector('.decimal');
 
 const arrayOfNums = [];
@@ -46,9 +47,13 @@ buttonEqual.addEventListener('click', function () {
     }
 });
 
-buttonClear.addEventListener('click', function () {
+buttonAllClear.addEventListener('click', function () {
     reset()
-})
+});
+
+buttonClear.addEventListener('click', function() {
+    display.textContent = display.textContent.slice(0, -1)
+});
 
 function updateDisplay(a) {
     if (resultDisplay.textContent !== '' && operand == '') {
@@ -184,5 +189,8 @@ document.addEventListener("keydown", e => {
     }
     if (e.key == 'Escape') {
         reset()
+    }
+    if (e.key == 'Backspace') {
+        display.textContent = display.textContent.slice(0, -1)
     }
 });
