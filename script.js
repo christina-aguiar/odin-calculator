@@ -119,6 +119,9 @@ function calculate() {
         arrayOfNums.push(sum);
         display.textContent = ''
         resultDisplay.textContent = sum;
+        if (resultDisplay.textContent.length > 10) {
+            resultDisplay.textContent = `${resultDisplay.textContent.substring(0, 10)}...`;
+        }
         preview.textContent = ''
         decimal.classList.remove('decimalPressed')
         decimalPressed = 'no';
