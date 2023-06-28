@@ -197,6 +197,11 @@ document.addEventListener("keydown", e => {
         reset()
     }
     if (e.key == 'Backspace') {
-        display.textContent = display.textContent.slice(0, -1)
+        display.textContent = display.textContent.slice(0, -1);
+        booleanTest = display.textContent.includes('.')
+        if (booleanTest == false) {
+            decimal.classList.remove('decimalPressed');
+            decimalPressed = 'no';
+        }
     }
 });
