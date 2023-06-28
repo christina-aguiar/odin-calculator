@@ -27,7 +27,7 @@ decimal.addEventListener('click', function() {
 });
 
 operatorButtons.forEach(Element => Element.addEventListener('click', function () {
-    if (display.textContent == '' || display.textContent == '.' && preview.textContent == '') {
+    if (display.textContent == '.' || display.textContent == '' && preview.textContent == '' && resultDisplay.textContent == '') {
         return
     }
     if (arrayOfNums.length > 0) {
