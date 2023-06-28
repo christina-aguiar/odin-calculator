@@ -27,6 +27,9 @@ decimal.addEventListener('click', function() {
 });
 
 operatorButtons.forEach(Element => Element.addEventListener('click', function () {
+    if (display.textContent == '' || display.textContent == '.' && preview.textContent == '') {
+        return
+    }
     if (arrayOfNums.length > 0) {
         calculate()
         operand = Element.textContent;
@@ -59,7 +62,7 @@ function updateDisplay(a) {
     if (resultDisplay.textContent !== '' && operand == '') {
         reset()
     }
-    if (resultDisplay !== '' && operand !== '') {
+    if (resultDisplay.textContent !== '' && operand !== '') {
         preview.textContent = `${arrayOfNums[0]} ${operand}`
     }
     resultDisplay.textContent = ''
